@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Clippin Design System - Futuristic Theme 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+
+    /* Card components */
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+
+    /* Popover components */
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Primary purple theme */
+    --primary: 270 95% 75%;
+    --primary-foreground: 0 0% 9%;
+    --primary-glow: 270 100% 85%;
+
+    /* Secondary grays */
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Muted elements */
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+
+    /* Accent elements */
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
+
+    /* States */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 76% 45%;
+    --success-foreground: 0 0% 98%;
+
+    /* Borders and inputs */
+    --border: 0 0% 20%;
+    --input: 0 0% 12%;
+    --ring: 270 95% 75%;
+
+    /* Glass effects */
+    --glass-bg: 0 0% 100% / 0.05;
+    --glass-border: 0 0% 100% / 0.1;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(270 95% 75%), hsl(270 100% 85%));
+    --gradient-bg: linear-gradient(180deg, hsl(0 0% 3%), hsl(270 20% 8%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 6% / 0.8), hsl(270 20% 10% / 0.6));
+
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(270 95% 75% / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Light mode (optional override) */
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+    --primary: 270 95% 60%;
+    --primary-foreground: 0 0% 98%;
+    --border: 0 0% 85%;
+    --glass-bg: 0 0% 0% / 0.05;
+    --glass-border: 0 0% 0% / 0.1;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-rajdhani;
+    background: url('./assets/hero-bg-mountain.jpg'), var(--gradient-bg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Floating background particles */
+  .bg-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: hsl(var(--primary) / 0.6);
+    border-radius: 50%;
+    animation: float-particle 6s infinite ease-in-out;
+  }
+
+  .particle:nth-child(2n) {
+    animation-delay: 1s;
+    background: hsl(var(--primary-glow) / 0.4);
+  }
+
+  .particle:nth-child(3n) {
+    animation-delay: 2s;
+    width: 6px;
+    height: 6px;
+  }
+
+  .particle:nth-child(4n) {
+    animation-delay: 3s;
+    background: hsl(var(--success) / 0.3);
+  }
+
+  .particle:nth-child(5n) {
+    animation-delay: 4s;
+    width: 3px;
+    height: 3px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-orbitron;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-nav {
+    @apply backdrop-blur-lg bg-black/20 border-b border-white/10;
+  }
+
+  .glow-button {
+    @apply relative overflow-hidden rounded-xl transition-all duration-300;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  .glow-button:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  /* 3D Transform utilities */
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+
+  .hover-3d {
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .hover-3d:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(15px);
+  }
+
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .card-3d:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg) translateZ(20px);
+    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.2);
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
+  to { box-shadow: 0 0 30px hsl(var(--primary) / 0.6); }
+}
+
+@keyframes float-particle {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.6;
+  }
+  25% { 
+    transform: translateY(-20px) translateX(10px) scale(1.2);
+    opacity: 1;
+  }
+  50% { 
+    transform: translateY(-40px) translateX(-5px) scale(0.8);
+    opacity: 0.4;
+  }
+  75% { 
+    transform: translateY(-20px) translateX(-10px) scale(1.1);
+    opacity: 0.8;
+  }
+}
